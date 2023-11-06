@@ -2,7 +2,7 @@ describe('Prometheus Test', () => {
 
   beforeEach(() => {
     const someMetric = 'container_cpu_usage_seconds_total';
-    cy.visit('http://127.0.0.1::9090');
+    cy.visit('0.0.0.0:9090');
     //cy.visit(Cypress.env('CYPRESS_PROMETHEUS_URL'));
     cy.get('div.cm-line').type(someMetric);
     cy.get('button.execute-btn').click();
