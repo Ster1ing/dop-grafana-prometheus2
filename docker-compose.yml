@@ -1,26 +1,20 @@
 version: '3'
 
-networks:
-  monitoring:
-    driver: bridge
-
 services:
   redis-server:
     image: 'redis'
-    container_name: redis
+    container_name: redis    
     ports:
       - "6379:6379"
-    networks:
-      - monitoring
 
-  node-app:
+  web-app:
     build: .
     container_name: koa
     ports:
-      - "8080:3000"
+      - "8080:3000"    
     image: koa:latest
-    networks:
-      - monitoring
+    environment:
+      - REDIS_ADDRESS=redis
   
   prometheus-mon:
     image: prom/prometheus
@@ -32,5 +26,3 @@ services:
     ports:
       - 9090:9090
     restart: unless-stopped
-    networks:
-      - monitoring

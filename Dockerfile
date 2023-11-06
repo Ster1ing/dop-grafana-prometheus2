@@ -9,5 +9,4 @@ COPY src/ /home/node/src/
 COPY test/ /home/node/test/
 
 WORKDIR /home/node/src
-EXPOSE 3000
 CMD ["node", "app.js"]

@@ -7,8 +7,7 @@ scrape_configs:
     metrics_path: /metrics
     scrape_interval: 5s
     static_configs:
-      - targets:
-          - 'localhost:9090'
+      - targets: ['prometheus:9090']
 
   - job_name: "webapp"
     metrics_path: /metrics
