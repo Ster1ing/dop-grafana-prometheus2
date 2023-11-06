@@ -15,23 +15,23 @@ services:
     depends_on:
     - redis-server
 
-  cadvisor-koa:
-    image: gcr.io/cadvisor/cadvisor:latest
-    container_name: cadvisor-koa
-    ports:
-    - 8082:8080
-    depends_on:
-    - web-app
-
-  web-app:
+  webapp:
     build: .
-    container_name: koa
+    container_name: webapp
     ports:
       - "8080:3000"    
     image: koa:latest
     environment:
       - REDIS_ADDRESS=redis
- 
+
+  cadvisor-webapp:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor-webapp
+    ports:
+    - 8082:8080
+    depends_on:
+    - webapp
+    
   prometheus-mon:
     image: prom/prometheus
     container_name: prometheus
@@ -44,4 +44,4 @@ services:
     restart: unless-stopped
     depends_on:
     - cadvisor-redis
-    - cadvisor-koa
+    - cadvisor-webapp
