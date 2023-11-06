@@ -18,6 +18,8 @@ jobs:
       run: docker compose up -d
     - name: docker ps
       run: docker ps
+    - name: curl http://localhost:9090
+      run: curl http://localhost:9090
     - name: Test containers functionality
       uses: cypress-io/github-action@v5
       env:
