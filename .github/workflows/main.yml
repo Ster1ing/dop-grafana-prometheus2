@@ -28,6 +28,7 @@ jobs:
       with:
         working-directory: ./.github/tests
     - uses: actions/upload-artifact@v2
+      if: always()
       with:
         path: /home/runner/work/prometheus-task2-Ster1ing/prometheus-task2-Ster1ing/.github/tests/cypress/screenshots/prometheus.cy.js/
         name: Download-screenshots
